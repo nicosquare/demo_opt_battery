@@ -3,11 +3,11 @@ class Config(object):
 
 
 class ProductionConfig(Config):
-    DATABASE_URI = "/root/CVM.sqlite"
+    DATABASE_URI = "/root/EGEO.sqlite"
     CHANGELOG_URI = "dir of version log"
 
 
 class DevelopmentConfig(Config):
     DEBUG = True
     CHANGELOG_URI = "dir of version log"
-    DATABASE_URI = "/mnt/g/escritorio/database-egeo/EGEO.sqlite"
+    DATABASE_URI = "" # Write the path to the database
