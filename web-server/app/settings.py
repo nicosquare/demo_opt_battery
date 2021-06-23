@@ -1,7 +1,7 @@
 from flask import jsonify, request
-from werkzeug.datastructures import Headers
 from app import app
-from app.src.database import read_credential, scan_wifi_networks, config_wifi, update_credential, insertBLOB, readBLOB
+from app.src.database import read_credential, update_credential, insertBLOB, readBLOB
+from app.src.wifi_config import  scan_wifi_networks, config_wifi
 
 
 

@@ -10,4 +10,4 @@ class ProductionConfig(Config):
 class DevelopmentConfig(Config):
     DEBUG = True
     CHANGELOG_URI = "dir of version log"
-    DATABASE_URI = "/home/karinamejia/Documentos/fileJohn/web-server-egeo/databases/CVM.sqlite"
+    DATABASE_URI = "/mnt/g/escritorio/database-egeo/EGEO.sqlite"
