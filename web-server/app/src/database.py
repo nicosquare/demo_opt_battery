@@ -1,18 +1,26 @@
 import sqlite3
 import logging
-import base64 
 from app import app
+from .sqlite_init import db_exists
 
 
 sqlite = app.config["DATABASE_URI"]
 
-# Funtion convert to binary image
+
 # def convert_to_binary_data(filename):
+#     Funtion convert to binary image
 #     #Convert digital data to binary format
 #     blobData = 'a'
 #     file = open(filename, 'rb')
 #     blobData = file.read()
 #     return blobData
+
+
+def init():
+    # check exist database 
+    db_exists(sqlite)
+
+init()
 
 
 def insert_blob(image):

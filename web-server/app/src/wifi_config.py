@@ -3,6 +3,12 @@ from app import app
 from datetime import datetime, timedelta
 from socket import error as socket_error
 import subprocess
+import os
+import os.path as path
+import json
+
+dir_name = os.path.dirname(path.abspath(__file__))
+wifi_data_development = '/utils/'.join([dir_name, 'data.json'])
 
 def scan_wifi_networks():
     if app.config["ENV"] == "production":
@@ -33,22 +39,10 @@ def scan_wifi_networks():
             logging.exception('Error running subprocess commands')
             return {'NetWorks': []}
     else:
-        data = {
-            'NetWorks': [{'key': 1, 'name': '4C1C90'},
-                         {'key': 2, 'name': 'MARIA'},
-                         {'key': 3, 'name': 'YOLANDA SUAREZ'},
-                         {'key': 4, 'name': 'Luz_Elvira'},
-                         {'key': 5, 'name': 'PPGOLDEN-2G'},
-                         {'key': 6, 'name': 'MAO CASA 2.4'},
-                         {'key': 7, 'name': 'Maye Perez'},
-                         {'key': 8, 'name': 'OSITOS'},
-                         {'key': 9, 'name': 'Omega-49FD'},
-                         {'key': 10, 'name': 'IGLESIAS_SERRANO'},
-                         {'key': 11, 'name': 'FAMILIA_ROBAYO'},
-                         {'key': 12, 'name': 'FAMILIABORBON'},
-                         {'key': 13, 'name': 'AZUMI'},
-                         {'key': 14, 'name': 'Zapata Isaza 2.4G_ETB'}]}
-
+        # read file "data.json" for send wifi networks example
+        f = open(wifi_data_development, "r")
+        content = f.read()
+        data = json.loads(content)
     return data
 
 

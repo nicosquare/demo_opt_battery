@@ -11,7 +11,8 @@ rm /root/egeo_iot/web-server/error-logs.txt
 
 python3 /root/egeo_iot/web-server/server.py >> /root/egeo_iot/web-server/error-logs.txt 2>&1 &
 
-# until python3 /root/egeo_iot/measurements/main.py >> /root/egeo_iot/measurements/error-logs.txt 2>&1; do
+# until python3 /root/egeo_iot/databases_init/sqlite.py >> /root/egeo_iot/databases_init/error-logs.txt 2>&1; 
+# do
 #      Meter failed, relaunching in 10 seconds...
 #      sleep 10
 # done

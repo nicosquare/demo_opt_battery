@@ -1,6 +1,7 @@
 # Exclude the IntelliJ configurations
 
 .idea/
+.gitignore
 
 # Exlude local configuration files
 

@@ -1,18 +1,17 @@
 import sqlite3
 import logging
+from typing import cast
 from urllib.request import pathname2url
 import os
 import os.path as path
 
-
-sqlite = '/mnt/g/escritorio/database-egeo/EGEO.sqlite'
 
 dir_name = os.path.dirname(path.abspath(__file__))
 db_script_hard_reset = '/../../../scripts/database/'.join([dir_name, 'first_configuration.sql'])
 img = '/../../../scripts/database/'.join([dir_name, 'cycleapp.png'])
 
 
-def insert_image():
+def insert_image(sqlite):
     try:
         # Configure connection object
         sqliteConnection = sqlite3.connect(sqlite)
@@ -29,8 +28,9 @@ def insert_image():
     except sqlite3.Error as error:
         print("Failed to insert blob data into sqlite table", error)
 
-def db_exists():
+def db_exists(sqlite):
     try:
+        print('Researching Database in: ', sqlite)
         logging.info("Researching Database")
         dburi = 'file:{}?mode=rw'.format(pathname2url(sqlite))
         conn = sqlite3.connect(dburi, uri=True, check_same_thread=False)
@@ -56,6 +56,4 @@ def db_exists():
             logging.exception("Error creating the initial setup")
         finally:
             conn.close()
-            insert_image()
-
-db_exists()
+            insert_image(sqlite)
