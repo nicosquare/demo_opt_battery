@@ -1,6 +1,6 @@
 from flask import jsonify, request
 from app import app
-from app.src.database import read_credential, update_credential, insertBLOB, readBLOB
+from app.src.database import read_credential, update_credential, insert_blob, read_blob
 from app.src.wifi_config import  scan_wifi_networks, config_wifi
 
 
@@ -18,7 +18,7 @@ def settings():
         return jsonify(data)
 
 
-@app.route('/api/updatePassword', methods=['POST'])
+@app.route('/api/update-password', methods=['POST'])
 def update_password():
     if request.method == "POST":
         parameters = request.get_json()
@@ -39,7 +39,7 @@ def update_password():
     return jsonify(data)
 
 
-@app.route('/api/load-wifiNetworks', methods=['GET'])
+@app.route('/api/load-wifi-networks', methods=['GET'])
 def load_wifi():
     data = scan_wifi_networks()
     return jsonify(data)
@@ -63,13 +63,13 @@ def save_img():
     if request.method == "POST":
         parameters = request.get_data()
         # .get_json()
-        res = insertBLOB(parameters)
+        res = insert_blob(parameters)
         return jsonify({'response': res})
 
 
 @app.route('/api/img', methods=['GET'])
 def read_img():
     if request.method == "GET":
-        res = readBLOB()
+        res = read_blob()
         return res
 

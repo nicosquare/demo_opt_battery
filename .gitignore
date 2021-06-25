@@ -1,0 +1,29 @@
+# Exclude the IntelliJ configurations
+
+.idea/
+
+# Exlude local configuration files
+
+measurements/device.cfg
+measurements/config_enviroment.py
+shelveServer/config_enviroment.py
+web-server/config.py
+error-logs.txt
+venv
+
+
+# Exclude Python cache
+
+measurements/__pycache__/
+measurements/src/__pycache__/
+shelveServer/__pycache__/
+web-server/__pycache__/
+shelveServer/src/__pycache__/
+web-server/app/__pycache__/
+web-server/app/src/__pycache__/
+web-server/app/build/
+*__pycache__*
+
+#scripts
+
+scripts/copy_files.sh
