@@ -1,7 +1,7 @@
 from flask import jsonify, request
 from app import app
 from app.src.database import read_credential, update_credential, insert_blob, read_blob
-from app.src.wifi_config import  scan_wifi_networks, config_wifi
+from app.src.wifi_config import  scan_wifi_networks, config_wifi, wifi_networks
 
 
 
@@ -42,6 +42,12 @@ def update_password():
 @app.route('/api/load-wifi-networks', methods=['GET'])
 def load_wifi():
     data = scan_wifi_networks()
+    return jsonify(data)
+
+
+@app.route('/api/wifi-network', methods=['GET'])
+def read_wifi():
+    data = wifi_networks()
     return jsonify(data)
 
 

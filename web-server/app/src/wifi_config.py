@@ -45,6 +45,23 @@ def scan_wifi_networks():
         data = json.loads(content)
     return data
 
+def wifi_networks():
+    if app.config["ENV"] == "production":
+        try:
+            result = subprocess.run(
+                 ['wifisetup', 'list'], stdout=subprocess.PIPE
+            )
+            response = result.stdout
+            responseDecode = response.decode("utf-8")
+            data = json.loads(responseDecode)
+            data = list(name for name in data['results'] if name['enabled'] == True )[0]
+            return {"response": data['ssid']}
+        except subprocess.CalledProcessError:
+            logging.exception('Error running subprocess commands')
+            return {"response": "None"}
+    else:
+        jsondecoded = {"response": "example001"}
+        return jsondecoded
 
 def config_wifi(wifi_name, password):
     if app.config["ENV"] == "production":

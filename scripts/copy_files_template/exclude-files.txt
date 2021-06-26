@@ -1,0 +1,17 @@
+.git/
+.idea/
+.gitignore
+.pylintrc
+metrology.sqlite
+dip.sqlite
+web-server/__pycache__/
+web-server/app/__pycache__/
+web-server/app/src/__pycache__/
+measurements/__pycache__/
+measurements/device.cfg
+measurements/device_template.cfg
+measurements/src/__pycache__/
+
+
+
+
