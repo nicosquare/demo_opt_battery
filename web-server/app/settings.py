@@ -1,8 +1,8 @@
 from flask import jsonify, request
 from app import app
-from app.src.database import read_credential, update_credential, insert_blob, read_blob
-from app.src.wifi_config import  scan_wifi_networks, config_wifi, wifi_networks
-
+from app.src.database import read_credential, update_credential, insert_blob, read_blob, restart_device
+from app.src.wifi_config import scan_wifi_networks, config_wifi, wifi_networks
+import base64
 
 
 @app.route('/api/authentification', methods=['POST'])
@@ -45,12 +45,6 @@ def load_wifi():
     return jsonify(data)
 
 
-@app.route('/api/wifi-network', methods=['GET'])
-def read_wifi():
-    data = wifi_networks()
-    return jsonify(data)
-
-
 @app.route('/api/config-wifi', methods=['POST'])
 def save_wifi():
     if request.method == "POST":
@@ -67,8 +61,7 @@ def save_wifi():
 @app.route('/api/change-img', methods=['POST'])
 def save_img():
     if request.method == "POST":
-        parameters = request.get_data()
-        # .get_json()
+        parameters = request.get_data()  # .get_json()
         res = insert_blob(parameters)
         return jsonify({'response': res})
 
@@ -77,5 +70,18 @@ def save_img():
 def read_img():
     if request.method == "GET":
         res = read_blob()
-        return res
+        return jsonify({'img': base64.b64encode(res)})
 
+
+@app.route('/api/reset', methods=['POST'])
+def reset():
+    if request.method == "POST":
+        parameters = request.get_json()
+        restart = parameters['restartDevice']
+        if restart:
+            if restart_device():
+                data = {'response': 'OK'}
+            else:
+                data = {'response': 'ERROR'}
+
+    return data

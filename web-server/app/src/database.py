@@ -2,7 +2,7 @@ import sqlite3
 import logging
 from app import app
 from .sqlite_init import db_exists
-
+import subprocess
 
 sqlite = app.config["DATABASE_URI"]
 
@@ -101,3 +101,13 @@ def update_credential(password):
         logging.exception("Error running Query")
         return None
 
+def restart_device():
+    if app.config["ENV"] == "production":
+        try:
+            subprocess.run(['/sbin/reboot', '-f'])
+            return True
+        except subprocess.CalledProcessError:
+            logging.exception('Error running subprocess commands')
+            return False
+    else:
+        return True
