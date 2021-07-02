@@ -6,16 +6,6 @@ import subprocess
 
 sqlite = app.config["DATABASE_URI"]
 
-
-# def convert_to_binary_data(filename):
-#     Funtion convert to binary image
-#     #Convert digital data to binary format
-#     blobData = 'a'
-#     file = open(filename, 'rb')
-#     blobData = file.read()
-#     return blobData
-
-
 def init():
     # check exist database 
     db_exists(sqlite)

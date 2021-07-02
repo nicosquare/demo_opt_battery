@@ -69,8 +69,8 @@ def save_img():
 @app.route('/api/img', methods=['GET'])
 def read_img():
     if request.method == "GET":
-        res = read_blob()
-        return jsonify({'img': base64.b64encode(res)})
+        img = base64.b64encode(read_blob()).decode("utf-8")
+        return jsonify({'img': img})
 
 
 @app.route('/api/reset', methods=['POST'])

@@ -2,8 +2,8 @@
 
 if [ $path ];
 then
-rsync -av -e ssh --exclude-from='exclude-files.txt' ../../../egeo_iot root@$path:~/
+rsync -arv -e ssh --exclude-from='exclude-files.txt' ../../scripts ../../web-server root@$path:~/egeo_iot/
 else
-rsync -av -e ssh --exclude-from='exclude-files.txt' ../../../egeo_iot root@192.168.3.1:~/
+rsync -arv -e ssh --exclude-from='exclude-files.txt' ../../scripts ../../web-server root@192.168.3.1:~/egeo_iot/
 fi
 
