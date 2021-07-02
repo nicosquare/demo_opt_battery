@@ -1,6 +1,7 @@
 .git/
 .idea/
 .gitignore
+README.md
 .pylintrc
 metrology.sqlite
 dip.sqlite
@@ -11,6 +12,7 @@ measurements/__pycache__/
 measurements/device.cfg
 measurements/device_template.cfg
 measurements/src/__pycache__/
+scripts/copy_files_template/
 
 
 
