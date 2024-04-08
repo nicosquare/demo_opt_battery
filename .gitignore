@@ -14,7 +14,6 @@ venv
 
 web-server/app/__pycache__/
 web-server/app/src/__pycache__/
-web-server/app/build/
 *__pycache__*
 
 #scripts

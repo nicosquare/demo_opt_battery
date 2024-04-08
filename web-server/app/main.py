@@ -17,6 +17,11 @@ def index():
     # return 'running server'
     return app.send_static_file('index.html')
 
+@app.route('/test')
+def test():
+    # return 'running server'
+    return 'test'
+
 # def database_init():
 #     print('ver url: ', sqlite)
 # db_exists(sqlite)
